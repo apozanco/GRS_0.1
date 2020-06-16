@@ -1,0 +1,9 @@
+builds/
+landmark-downward/builds/
+venv/
+.hg/
+.hgignore
+.hgtags
+.idea/
+.uncrustify.cfg
+

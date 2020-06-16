@@ -1,0 +1,73 @@
+These are the assumptions made in the input of the pddl files. They are made to simplify the parsing while we incorporate the FD translator to the code.
+The main execution of GRS has nothing to do with this. These assumptions are needed mostly for computing some statistics about the path that leads to the state returned by GRS.
+
+# DOMAIN FILES
+
+* When definining the types, each new hierarchy comes in a new line
+	
+	(:types
+	cell - place
+	player - locatable
+	)
+
+* Each parameter of an action has each associated type right after
+
+	:parameters (?x1 - player ?x2 - cell ?x3 - cell)
+
+	rather than
+
+	:parameters (?x1 - player ?x2 ?x3 - cell)
+
+* All the preconditions and effects of an action are described as a conjunction of predicates, with each new predicate starting in a new line
+
+	(:action move
+	:parameters (?x1 - player ?x2 - cell ?x3 - cell)
+	:precondition (and
+	(at ?x1 ?x2)
+	(free ?x3)
+	(connected ?x2 ?x3)
+	)
+	:effect (and
+	(not (at ?x1 ?x2))
+	(at ?x1 ?x3)
+	(free ?x2)
+	(not (free ?x3))
+	(increase (total-cost) 1)
+	)
+	)
+
+* All the domains must contain the total-cost function
+
+	(:functions
+	(total-cost)
+	)
+
+# PROBLEM FILES
+
+* Each type of objects is defined in a line:
+
+	(:objects
+	p0 - player
+	c1 c2 c3 c4 c5 c6 c7 c8 c9 - cell)
+
+* Each predicate/fluent in the initial state is represented in a new line
+
+	(:init
+	(free c1)
+	(at p0 c2)
+	(free c3)
+	...
+	)
+
+* The goal definition of the problem contains the placeholder <HYPOTHESIS>, as in Ramirez and Geffner code for plan recognition
+
+	(:goal (and
+	<HYPOTHESIS>
+	)
+	)
+
+* All the problems minimize the total cost function
+
+	(:metric minimize (total-cost))
+
+
