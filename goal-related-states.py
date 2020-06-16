@@ -288,7 +288,7 @@ def main():
             avg_this_state = sum([x[1] for x in this_state_cost]) / float(sum(probabilities))
             total_plan_value = ((total_plan_value * aux_cont) + avg_this_state) / float(aux_cont + 1)
 
-        if 'r' in options.state: #in this case we want to approach the goals somehow
+        if 'r-' in options.state: #in this case we want to approach the goals somehow
             total_plan_value = total_plan_value * -1
         set_of_results[y].append(total_plan_value)
 
