@@ -101,7 +101,7 @@ namespace ff_heuristic {
         }
         else{
             cout << "Could not solve the problem" << endl;
-	    distancia = 0;
+	    distancia = 1000;
         }
 
 

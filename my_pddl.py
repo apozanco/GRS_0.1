@@ -113,7 +113,7 @@ def get_fd_cost(file):
                 real_value = num_of_actions
             infile.close()
             return real_value
-    return 0
+    return 1000
 
 # Method that divides a pddl problem into structures
 def pddl_to_structures(path):
