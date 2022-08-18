@@ -78,29 +78,6 @@ def generate_cmd(options,change_domain):
 
 
 def main():
-    for x in range(10):
-        path = 'benchmarks/blocks-words/experiments/p' + str(x) + '/goals.txt'
-        infile = open(path,'r')
-        for line in infile:
-            aux = line.split(' - ')
-            pct = aux[1]
-            word = aux[0].replace(')','').replace('(','')
-            if len(word) < 10:
-                outfile = open('benchmarks/blocks-words/experiments/p' + str(x) + '/goals2.txt','a+')
-                predicates = []
-                for y in range(len(word)):
-                    if y == 0:
-                        predicates.append('(clear ' + word[y] + ')')
-                        predicates.append('(on ' + word[y] + ' ' + word[y + 1] + ')')
-                    elif y == (len(word) - 1):
-                        predicates.append('(ontable ' + word[y] + ')')
-                    elif y < (len(word) - 1):
-                        predicates.append('(on ' + word[y] + ' ' + word[y+1] + ')')
-                outfile.write('|'.join(predicates) + ' - ' + pct)
-            else:
-                break
-
-
     # ....:::: CLEAN FILES ::::....
     #clean_files()
 
